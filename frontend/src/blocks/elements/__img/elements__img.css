@@ -1,0 +1,17 @@
+.elements__img {
+    width: 100%;
+    min-width: 100%;
+    min-height: 282px;
+    border-radius: 10px 10px 0 0;
+    max-height: 282px;
+    object-fit: cover;
+    color: #fff;
+    background-color: #000;
+    aspect-ratio: 3/4;
+    overflow-wrap: anywhere;
+    overflow: hidden;
+}
+
+.elements__img:hover {
+    cursor: pointer;
+}

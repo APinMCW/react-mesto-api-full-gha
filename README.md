@@ -9,8 +9,8 @@
 
 ## Ссылки на проект
 
-IP-адрес x.x.x.x
+IP-адрес 158.160.102.19
 
-Frontend https://...
+Frontend https://learning-mesto.nomoredomains.rocks
 
-Backend https://...
+Backend https://api.learning-mesto.nomoredomains.rocks

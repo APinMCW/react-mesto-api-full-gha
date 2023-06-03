@@ -1,0 +1,16 @@
+.navbar__link {
+    font-style: normal;
+    font-weight: 400;
+    font-size: 18px;
+    line-height: 1;
+    text-align: center;
+    color: #FFFFFF;
+    text-decoration: none;
+}
+
+@media (max-width: 500px) {
+    .navbar__link {
+        margin: 0 30px 0 0;
+        font-size: 14px;
+    }
+}

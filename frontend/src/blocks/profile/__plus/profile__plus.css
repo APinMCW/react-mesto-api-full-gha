@@ -1,0 +1,27 @@
+.profile__plus {
+    background: url(../../../images/butPlus.svg);
+    background-size: 22px 22px;
+    background-repeat: no-repeat;
+    background-position: center;
+    min-width: 150px;
+    min-height: 50px;
+    padding: 0;
+    border: 0;
+    border: 2px solid #fff;
+    border-radius: 2px;
+    margin: 0;
+    margin-left: auto; 
+}
+
+@media (max-width: 550px) {
+    .profile__plus {
+        background-size: 16px 16px;
+        margin: 36px 0 0;
+        min-width: 282px;
+    }    
+}
+
+    .profile__plus:hover {
+        opacity: 0.6;
+        transition: opacity 0.3s;
+    }

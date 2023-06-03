@@ -1,0 +1,14 @@
+.profile__section {
+    display: flex;
+    flex-direction: row;
+    align-items: flex-start;
+    padding-top: 12px;
+    min-width: 217px;
+}
+
+@media (max-width: 550px) {
+    .profile__section {
+        justify-content: center;
+        max-width: 282px;
+    }    
+}

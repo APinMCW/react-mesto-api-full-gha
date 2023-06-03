@@ -1,0 +1,21 @@
+.Register__input{
+    box-sizing: border-box;
+    font-style: normal;
+    font-weight: 500;
+    font-size: 14px;
+    line-height: 1;
+    color: #fff;
+    border: 0;
+    border-bottom: 2px solid #ccc;
+    padding: 0;
+    width: 100%;
+    margin: 30px auto 0;
+    background-color: #000;
+    height: 30px;
+}
+
+.Register__input::placeholder {
+    font-weight: 400;
+    color: #ccc;
+}
+

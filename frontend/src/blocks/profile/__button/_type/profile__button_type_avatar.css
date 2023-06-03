@@ -1,0 +1,24 @@
+.profile__button_type_avatar {
+    background: url(../../../../images/editPenAvatar.svg);
+    background-size: 26px 26px;
+    background-repeat: no-repeat;
+    background-position: center;
+    background-color:rgba(0,0,0,0);
+
+    padding: 0;
+    border: 0;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    border-radius: 50%;
+    margin: 0;
+
+    position: absolute;
+}
+
+.profile__button_type_avatar:hover {
+    background-color:rgba(0,0,0,0.6);
+    opacity: 1;
+    transition: opacity 0.3s;
+    cursor: pointer;
+}

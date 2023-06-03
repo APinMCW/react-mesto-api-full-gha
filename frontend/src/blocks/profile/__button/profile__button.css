@@ -1,0 +1,29 @@
+.profile__button {
+    background: url(../../../images/editPen.svg);
+    background-size: 10px 10px;
+    background-repeat: no-repeat;
+    background-position: center;
+    min-width: 26px;
+    min-height: 26px;
+    margin-left: 18px;
+    padding: 7px;
+    border: 0;
+    border: 1px solid #fff;
+    margin-top: 14px;
+}
+
+@media (max-width: 550px) {
+    .profile__button {
+        background-size: 7.5px 7.5px;
+        min-width: 20px;
+        min-height: 20px;
+        padding: 5.25px;
+        margin-left: 10px;
+        margin-top: 30px;
+    }
+}
+
+.profile__button:hover {
+    opacity: 0.6;
+    transition: opacity 0.3s;
+}
