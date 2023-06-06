@@ -17,7 +17,7 @@ router.use('/cards', cardRoutes);
 
 router.use(errors());
 
-router.use('/*', (next) => {
+router.use('*', (req, res, next) => {
   next(new NotFoundError('Страница по указанному маршруту не найдена'));
 });
 
