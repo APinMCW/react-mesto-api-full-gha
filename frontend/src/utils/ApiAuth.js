@@ -1,5 +1,5 @@
 const config = {
-  url: "https://api.learning-mesto.nomoredomains.rocks/",
+  url: "https://api.learning-mesto.nomoredomains.rocks",
   headers: {
     "Content-Type": "application/json",
     Accept: "application/json",
