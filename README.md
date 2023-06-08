@@ -9,7 +9,7 @@
 
 ## Ссылки на проект
 
-IP-адрес IP 158.160.102.19
+IP-адрес IP: 158.160.102.19
 
 Frontend https://learning-mesto.nomoredomains.rocks
 
