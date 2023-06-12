@@ -37,14 +37,14 @@ function App() {
   useEffect(() => {
     tokenCheck();
   }, []);
-
+  
   useEffect(() => {
     Promise.all([api.getUserInfo(), api.getCards()])
-      .then(([userData, cards]) => {
-        setCurrentUser(userData);
-        setCards(cards);
-      })
-      .catch((err) => console.log(`Ошибка при запросе данных: ${err}`));
+    .then(([userData, cards]) => {
+      setCurrentUser(userData.user);
+      setCards(cards.cards);
+    })
+    .catch((err) => console.log(`Ошибка при запросе данных: ${err}`));
   }, []);
 
   function handleDeleteClick(card) {
@@ -117,7 +117,7 @@ function App() {
     return ApiAuth.authorize(email, password)
       .then((data) => {
         if (data.token) {
-          localStorage.setItem("jwt", data.token);
+          localStorage.setItem("token", data.token);
           setloggedIn(true);
           setDataUser({
             password: password,
@@ -148,7 +148,7 @@ function App() {
               icon: "succses",
             });
         setNoticePopupOpen(true);
-        navigate("/sign-in")
+        navigate("/signin")
       })
       .catch(() => {
         setDataInfoTooltop({
@@ -159,8 +159,14 @@ function App() {
       });
   }
 
+  function handleLogout() {
+		localStorage.removeItem("token")
+		setloggedIn(false)
+		navigate('/')
+	}
+
   function tokenCheck() {
-    const jwt = localStorage.getItem("jwt");
+    const jwt = localStorage.getItem("token");
     if (jwt) {
       ApiAuth.checkToken(jwt)
         .then((res) => {
@@ -177,7 +183,7 @@ function App() {
 
   return (
     <CurrentUserContext.Provider value={currentUser}>
-      <Header dataUser={dataUser} />
+      <Header dataUser={dataUser} handleLogout={handleLogout} />
       <Routes>
         <Route
           path="*"
@@ -185,13 +191,13 @@ function App() {
             loggedIn ? (
               <Navigate to="/" replace />
             ) : (
-              <Navigate to="/sign-in" replace />
+              <Navigate to="/signin" replace />
             )
           }
         />
-        <Route path="/sign-in" element={<Login handleLogin={handleLogin} />} />
+        <Route path="/signin" element={<Login handleLogin={handleLogin} />} />
         <Route
-          path="/sign-up"
+          path="/signup"
           element={<Register handleRegister={handleRegister} />}
         />
         <Route

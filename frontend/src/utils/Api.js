@@ -3,7 +3,7 @@ import apiConfig from "./apiConfig";
 class Api {
   constructor() {
     this._url = apiConfig.url;
-    this._headers = apiConfig.headers;
+    this._headers = { ...apiConfig.headers, authorization: `Bearer ${localStorage.getItem("token")}` };
   }
   _checkResponse(response) {
     if (response.ok) {

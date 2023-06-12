@@ -33,7 +33,7 @@ function Login({ handleLogin }) {
         type="email"
         name="email"
         placeholder="Email"
-        value={values.email}
+        value={values.email || ""}
         onChange={handleChange}
         required
         blockClassName="login"
@@ -44,7 +44,7 @@ function Login({ handleLogin }) {
         type="password"
         name="password"
         placeholder="Пароль"
-        value={values.password}
+        value={values.password || ""}
         onChange={handleChange}
         required
         blockClassName="login"

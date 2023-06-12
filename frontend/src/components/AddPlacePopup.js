@@ -30,7 +30,7 @@ function AddPlacePopup({ isOpen, onClose, onAddPlace }) {
         type="text"
         name="name"
         placeholder="Название"
-        value={values.name}
+        value={values.name || ""}
         onChange={handleChange}
         required
         blockClassName="popup"
@@ -42,7 +42,7 @@ function AddPlacePopup({ isOpen, onClose, onAddPlace }) {
         type="url"
         name="link"
         placeholder="Ссылка на картинку"
-        value={values.link}
+        value={values.link || ""}
         onChange={handleChange}
         required
         blockClassName="popup"

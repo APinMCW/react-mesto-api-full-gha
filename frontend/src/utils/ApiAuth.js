@@ -1,35 +1,30 @@
-const config = {
-  url: "https://api.learning-mesto.nomoredomains.rocks",
-  headers: {
-    "Content-Type": "application/json",
-    Accept: "application/json",
-  },
-};
+import apiConfig from "./apiConfig";
+
 
 const checkResponse = (res) => {
   return res.ok ? res.json() : Promise.reject(`Ошибка: ${res.status}`);
 };
 
 export const register = (email, password) => {
-  return fetch(`${config.url}/signup`, {
+  return fetch(`${apiConfig.url}signup`, {
     method: "POST",
-    headers: config.headers,
+    headers: apiConfig.headers,
     body: JSON.stringify({ email, password }),
   }).then(checkResponse);
 };
 
 export const authorize = (email, password) => {
-  return fetch(`${config.url}/signin`, {
+  return fetch(`${apiConfig.url}signin`, {
     method: "POST",
-    headers: config.headers,
+    headers: apiConfig.headers,
     body: JSON.stringify({ email, password }),
   }).then(checkResponse);
 };
 
 export const checkToken = (JWT) => {
-  return fetch(`${config.url}/users/me`, {
+  return fetch(`${apiConfig.url}users/me`, {
     method: "GET",
-    headers: { ...config.headers, Authorization: `Bearer ${JWT}` },
+    headers: { ...apiConfig.headers, authorization: `Bearer ${JWT}` },
   }).then(checkResponse);
 };
 
