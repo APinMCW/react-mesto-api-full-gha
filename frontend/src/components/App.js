@@ -37,15 +37,17 @@ function App() {
   useEffect(() => {
     tokenCheck();
   }, []);
-  
+
   useEffect(() => {
-    Promise.all([api.getUserInfo(), api.getCards()])
-    .then(([userData, cards]) => {
-      setCurrentUser(userData.user);
-      setCards(cards.cards);
-    })
-    .catch((err) => console.log(`Ошибка при запросе данных: ${err}`));
-  }, []);
+    if (loggedIn) {
+      Promise.all([api.getUserInfo(), api.getCards()])
+        .then(([userData, cards]) => {
+          setCurrentUser(userData);
+          setCards(cards);
+        })
+        .catch((err) => console.log(`Ошибка при запросе данных: ${err}`));
+    }
+  }, [loggedIn]);
 
   function handleDeleteClick(card) {
     api
@@ -57,7 +59,7 @@ function App() {
   }
 
   function handleCardLike(card) {
-    const isLiked = card.likes.some((i) => i._id === currentUser._id);
+    const isLiked = card.likes.some((i) => i === currentUser._id);
 
     api
       .changeLikeCardStatus(card._id, !isLiked)
@@ -148,7 +150,7 @@ function App() {
               icon: "succses",
             });
         setNoticePopupOpen(true);
-        navigate("/signin")
+        navigate("/signin");
       })
       .catch(() => {
         setDataInfoTooltop({
@@ -160,10 +162,10 @@ function App() {
   }
 
   function handleLogout() {
-		localStorage.removeItem("token")
-		setloggedIn(false)
-		navigate('/')
-	}
+    localStorage.removeItem("token");
+    setloggedIn(false);
+    navigate("/");
+  }
 
   function tokenCheck() {
     const jwt = localStorage.getItem("token");
