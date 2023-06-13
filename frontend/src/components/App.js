@@ -39,13 +39,15 @@ function App() {
   }, []);
 
   useEffect(() => {
-    Promise.all([api.getUserInfo(), api.getCards()])
-      .then(([userData, cards]) => {
-        setCurrentUser(userData);
-        setCards(cards);
-      })
-      .catch((err) => console.log(`Ошибка при запросе данных: ${err}`));
-  }, []);
+    if (loggedIn) {
+      Promise.all([api.getUserInfo(), api.getCards()])
+        .then(([userData, cards]) => {
+          setCurrentUser(userData);
+          setCards(cards);
+        })
+        .catch((err) => console.log(`Ошибка при запросе данных: ${err}`));
+    }
+  }, [loggedIn]);
 
   function handleDeleteClick(card) {
     api
@@ -57,7 +59,7 @@ function App() {
   }
 
   function handleCardLike(card) {
-    const isLiked = card.likes.some((i) => i._id === currentUser._id);
+    const isLiked = card.likes.some((i) => i === currentUser._id);
 
     api
       .changeLikeCardStatus(card._id, !isLiked)
@@ -118,7 +120,10 @@ function App() {
       .then((data) => {
         if (data.token) {
           localStorage.setItem("token", data.token);
+<<<<<<< HEAD
           apiConfig.headers.Authorization = `Bearer ${localStorage.getItem("token")}`;
+=======
+>>>>>>> 0fa24be11d194654ff8e7e3f58ad4546d8cfa62c
           setloggedIn(true);
           setDataUser({
             password: password,
@@ -149,7 +154,7 @@ function App() {
               icon: "succses",
             });
         setNoticePopupOpen(true);
-        navigate("/sign-in")
+        navigate("/signin");
       })
       .catch(() => {
         setDataInfoTooltop({
@@ -158,6 +163,12 @@ function App() {
         });
         setNoticePopupOpen(true);
       });
+  }
+
+  function handleLogout() {
+    localStorage.removeItem("token");
+    setloggedIn(false);
+    navigate("/");
   }
 
   function tokenCheck() {
@@ -178,7 +189,7 @@ function App() {
 
   return (
     <CurrentUserContext.Provider value={currentUser}>
-      <Header dataUser={dataUser} />
+      <Header dataUser={dataUser} handleLogout={handleLogout} />
       <Routes>
         <Route
           path="*"
@@ -186,13 +197,13 @@ function App() {
             loggedIn ? (
               <Navigate to="/" replace />
             ) : (
-              <Navigate to="/sign-in" replace />
+              <Navigate to="/signin" replace />
             )
           }
         />
-        <Route path="/sign-in" element={<Login handleLogin={handleLogin} />} />
+        <Route path="/signin" element={<Login handleLogin={handleLogin} />} />
         <Route
-          path="/sign-up"
+          path="/signup"
           element={<Register handleRegister={handleRegister} />}
         />
         <Route

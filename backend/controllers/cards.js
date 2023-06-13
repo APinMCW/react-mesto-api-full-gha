@@ -30,7 +30,11 @@ function updateDataCard(req, res, next, cardId, data) {
 // GET /cards/
 const getcards = (req, res, next) => {
   Card.find({}).then((cards) => {
+<<<<<<< HEAD
     res.status(statusCode.OK).send(cards.reverse());
+=======
+    res.status(statusCode.OK).send(cards);
+>>>>>>> 0fa24be11d194654ff8e7e3f58ad4546d8cfa62c
   }).catch(next);
 };
 

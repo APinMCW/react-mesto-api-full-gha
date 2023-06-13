@@ -17,21 +17,21 @@ class Api {
 
   getUserInfo() {
     return fetch(`${this._url}${"users/me"}`, {
-      headers: this._headers,
+      headers: {...this._headers, authorization: `Bearer ${localStorage.getItem("token")}`},
       method: "GET",
     }).then(this._checkResponse);
   }
 
   getCards() {
     return fetch(`${this._url}${"cards"}`, {
-      headers: this._headers,
+      headers: {...this._headers, authorization: `Bearer ${localStorage.getItem("token")}`},
       method: "GET",
     }).then(this._checkResponse);
   }
 
   setUserInfo(userInfo) {
     return fetch(`${this._url}${"users/me"}`, {
-      headers: this._headers,
+      headers: {...this._headers, authorization: `Bearer ${localStorage.getItem("token")}`},
       method: "PATCH",
       body: JSON.stringify({
         name: userInfo.name,
@@ -42,7 +42,7 @@ class Api {
 
   setCard(card) {
     return fetch(`${this._url}${"cards"}`, {
-      headers: this._headers,
+      headers: {...this._headers, authorization: `Bearer ${localStorage.getItem("token")}`},
       method: "POST",
       body: JSON.stringify({
         name: card.name,
@@ -53,7 +53,7 @@ class Api {
 
   delCard(cardId) {
     return fetch(`${this._url}${"cards"}/${cardId}`, {
-      headers: this._headers,
+      headers: {...this._headers, authorization: `Bearer ${localStorage.getItem("token")}`},
       method: "DELETE",
     }).then(this._checkResponse);
   }
@@ -61,12 +61,12 @@ class Api {
   changeLikeCardStatus(cardId, isLikeCard) {
     if (isLikeCard) {
       return fetch(`${this._url}${"cards"}/${cardId}/${"likes"}`, {
-        headers: this._headers,
+        headers: {...this._headers, authorization: `Bearer ${localStorage.getItem("token")}`},
         method: "PUT",
       }).then(this._checkResponse);
     } else {
       return fetch(`${this._url}${"cards"}/${cardId}/${"likes"}`, {
-        headers: this._headers,
+        headers: {...this._headers, authorization: `Bearer ${localStorage.getItem("token")}`},
         method: "DELETE",
       }).then(this._checkResponse);
     }
@@ -75,7 +75,7 @@ class Api {
   setAvatar(avatar) {
     return fetch(`${this._url}${"users/me/avatar"}`, {
       method: "PATCH",
-      headers: this._headers,
+      headers: {...this._headers, authorization: `Bearer ${localStorage.getItem("token")}`},
       body: JSON.stringify({ avatar }),
     }).then(this._checkResponse);
   }

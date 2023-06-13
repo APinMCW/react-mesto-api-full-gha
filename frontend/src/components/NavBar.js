@@ -1,13 +1,7 @@
-import { Link, useLocation, useNavigate } from "react-router-dom";
+import { Link, useLocation} from "react-router-dom";
 
-function NavBar({ dataUser }) {
+function NavBar({ dataUser, handleLogout }) {
   const location = useLocation();
-  const navigate = useNavigate();
-
-  function handleLogout() {
-    localStorage.removeItem("jwt")
-    navigate("/sign-in");
-  }
 
   return (
     <div className="navbar">
@@ -17,13 +11,13 @@ function NavBar({ dataUser }) {
           Выйти
         </button>
       )}
-      {location.pathname === "/sign-in" && (
-        <Link className="navbar__link" to="/sign-up">
+      {location.pathname === "/signin" && (
+        <Link className="navbar__link" to="/signup">
           Регистрация
         </Link>
       )}
-      {location.pathname === "/sign-up" && (
-        <Link className="navbar__link" to="/sign-in">
+      {location.pathname === "/signup" && (
+        <Link className="navbar__link" to="/signin">
           Войти
         </Link>
       )}{" "}

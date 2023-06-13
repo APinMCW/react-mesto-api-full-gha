@@ -53,7 +53,7 @@ function Register({ handleRegister }) {
       </Form>
       <p className="Register__subtitle">
         Уже зарегистрированы? 
-        <Link className="Register__login" to="/sign-in">
+        <Link className="Register__login" to="/signin">
           Войти
         </Link>
       </p>
