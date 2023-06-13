@@ -11,7 +11,7 @@ import EditProfilePopup from "./EditProfilePopup";
 import EditAvatarPopup from "./EditAvatarPopup";
 import AddPlacePopup from "./AddPlacePopup";
 import Login from "./Login";
-
+import apiConfig from "../utils/apiConfig";
 import Register from "./Register";
 import InfoTooltip from "./InfoTooltip";
 import * as ApiAuth from "../utils/ApiAuth.js";
@@ -88,7 +88,7 @@ function App() {
         setCurrentUser(data);
         closeAllPopups();
       })
-      .catch((err) =>
+      .catch((err) => 
         console.log(`Ошибка при обновлении данных профиля: ${err}`)
       );
   }
@@ -117,7 +117,8 @@ function App() {
     return ApiAuth.authorize(email, password)
       .then((data) => {
         if (data.token) {
-          localStorage.setItem("jwt", data.token);
+          localStorage.setItem("token", data.token);
+          apiConfig.headers.Authorization = `Bearer ${localStorage.getItem("token")}`;
           setloggedIn(true);
           setDataUser({
             password: password,
@@ -160,7 +161,7 @@ function App() {
   }
 
   function tokenCheck() {
-    const jwt = localStorage.getItem("jwt");
+    const jwt = localStorage.getItem("token");
     if (jwt) {
       ApiAuth.checkToken(jwt)
         .then((res) => {

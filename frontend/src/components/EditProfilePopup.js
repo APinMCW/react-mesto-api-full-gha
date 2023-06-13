@@ -32,7 +32,7 @@ function EditProfilePopup({ isOpen, onClose, onUpdateUser }) {
         type="text"
         name="name"
         placeholder="Имя"
-        value={values.name}
+        value={values.name || ""}
         onChange={handleChange}
         required
         blockClassName="popup"
@@ -43,7 +43,7 @@ function EditProfilePopup({ isOpen, onClose, onUpdateUser }) {
         type="text"
         name="about"
         placeholder="О себе"
-        value={values.about}
+        value={values.about || ""}
         onChange={handleChange}
         required
         blockClassName="popup"
